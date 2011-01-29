@@ -1,0 +1,6 @@
+lib/Plack/Middleware/AllowCrossSiteAJAX.pm
+MANIFEST
+Changes
+Makefile.PL
+t/ajax.t
+META.yml                                 Module meta-data (added by MakeMaker)
