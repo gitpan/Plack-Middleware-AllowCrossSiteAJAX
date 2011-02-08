@@ -4,7 +4,7 @@ use warnings;
 
 use parent qw( Plack::Middleware );
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 use Plack::Util::Accessor
     qw( origin timeout credentials methods custom_headers default_headers );
@@ -76,81 +76,11 @@ __END__
 
 =head1 NAME
 
-Plack::Middleware::AllowCrossSiteAJAX - Set the CORS Access-Control-Allow-Origin header family 
+Plack::Middleware::AllowCrossSiteAJAX - DEPRECATED
 
-=head1 SYNOPSIS
+=head1 IMPORTANT
 
-  # in app.psgi
-  use Plack::Builder;
-
-  builder {
-      enable "AllowCrossSiteAJAX";
-      $app;
-  };
-
-=head1 DESCRIPTION
-
-Plack::Middleware::AllowCrossSiteAJAX allows your client browser to submit
-XmlHttpRequest documents to your server if they were referred by
-a different site.
-
-This is according to the Cross-Origin Resource Sharing (CORS) standard,
-as published at http://www.w3.org/TR/access-control/
-
-=head1 CONFIGURATIONS
-
-=over 4
-
-=item origin
-
-A string that specifies the allowed origin web site.  Defaults to
-'*' which means any origin is allowed.
-
-=item credentials
-
-A boolean whether or not credentials should be forwarded to this
-page.  Defaults to 1.  If you want to forward credentials, you
-should also add the following Javascript to your page:
-
-    // From: http://www.nczonline.net/blog/2010/05/25/cross-domain-ajax-with-cross-origin-resource-sharing/
-    function createCORSRequest(method, url){
-	    var xhr = new XMLHttpRequest();
-	    if ("withCredentials" in xhr){
-	        xhr.open(method, url, true);
-	    } else if (typeof XDomainRequest != "undefined"){
-	        xhr = new XDomainRequest();
-	        xhr.open(method, url);
-	    } else {
-	        xhr = null;
-	    }
-	    return xhr;
-	}
-   
-And then call 'var xhr = createCORSRequest(method, url); xhr.withCredentials = "true";' when you want to
-have an XMLHttpRequest that forwards credentials.
-
-=item custom_headers
-
-An arrayref of any custom headers that are allowed to be submitted to the page.
-Default is [].
-
-=item default_headers
-
-An arrayref of standard headers that are allowed to be submitted to the page.
-Default taken from http://www.webdavsystem.com/ajax/programming/cross_origin_requests
-
-=item methods
-
-An arrayref that specifies the HTTP methods allowed by this page.
-Defaults to all standard HTTP and WebDAV methods (['GET', 'POST', ...]).
-
-
-=item timeout
-
-An integer that specifies the number of seconds before the client
-should refresh this information.  Defaults to 30.
-
-=back
+This module is deprecated. Please use L<Plack::Middleware::CrossOrigin> instead.
 
 =head1 AUTHOR
 
@@ -159,6 +89,6 @@ Michael FIG (Original author)
 
 =head1 SEE ALSO
 
-L<Plack>
+L<Plack::Middleware::CrossOrigin>
 
 =cut
